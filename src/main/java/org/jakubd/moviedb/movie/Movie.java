@@ -4,11 +4,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import org.jakubd.moviedb.user.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
@@ -20,7 +18,7 @@ class Movie {
     @Id
     @Setter(AccessLevel.NONE)
     @Column(name = "ID", columnDefinition = "char(36)")
-    private String id = UUID.randomUUID().toString();
+    private String id;
 
     @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
@@ -30,4 +28,16 @@ class Movie {
 
     @Column(name = "WATCHED")
     private boolean watched;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_LOGIN")
+    private User user;
+
+    Movie() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    Movie(String id) {
+        this.id = id;
+    }
 }
