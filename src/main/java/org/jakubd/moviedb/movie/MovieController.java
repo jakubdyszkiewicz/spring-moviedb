@@ -24,4 +24,9 @@ class MovieController {
     List<MovieDto> findAll() {
         return movieService.findAll();
     }
+
+    @GetMapping(params = "watched")
+    List<MovieDto> findAll(@RequestParam("watched") boolean watched) {
+        return movieService.findWatched(watched);
+    }
 }

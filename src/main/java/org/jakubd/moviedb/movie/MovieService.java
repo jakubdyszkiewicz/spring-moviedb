@@ -27,8 +27,14 @@ public class MovieService {
         return movieMapper.map(movie);
     }
 
-    List<MovieDto> findAll() {
+    public List<MovieDto> findAll() {
         return movieRepository.findAll().stream()
+                .map(movieMapper::map)
+                .collect(toList());
+    }
+
+    public List<MovieDto> findWatched(boolean watched) {
+        return movieRepository.findByWatched(watched).stream()
                 .map(movieMapper::map)
                 .collect(toList());
     }
