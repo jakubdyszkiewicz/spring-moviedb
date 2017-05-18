@@ -5,6 +5,10 @@ import org.jakubd.moviedb.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -21,5 +25,11 @@ public class MovieService {
         movie.setUser(user);
         movie = movieRepository.save(movie);
         return movieMapper.map(movie);
+    }
+
+    List<MovieDto> findAll() {
+        return movieRepository.findAll().stream()
+                .map(movieMapper::map)
+                .collect(toList());
     }
 }
