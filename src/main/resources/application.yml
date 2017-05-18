@@ -1,11 +1,11 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
   datasource:
     url: jdbc:mysql://localhost:3306/moviedb
     username: moviedb
     password: moviedb
 
 flyway:
-  enabled: false
+  locations: classpath:db/migration, db/init
