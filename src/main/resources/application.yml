@@ -9,3 +9,4 @@ spring:
 
 flyway:
   locations: classpath:db/migration, db/init
+  out-of-order: true
