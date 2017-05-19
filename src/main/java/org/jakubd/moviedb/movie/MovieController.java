@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,11 @@ class MovieController {
     @ResponseStatus(HttpStatus.CREATED)
     MovieDto create(@Valid @RequestBody MovieDto dto) {
         return movieService.create(dto);
+    }
+
+    @PutMapping("/{id}")
+    MovieDto update(@PathVariable("id") String id, @Valid @RequestBody MovieDto dto) {
+        return movieService.update(id, dto);
     }
 
     @GetMapping

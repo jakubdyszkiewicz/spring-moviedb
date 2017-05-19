@@ -1,6 +1,7 @@
 package org.jakubd.moviedb.movie;
 
 import lombok.RequiredArgsConstructor;
+import org.jakubd.moviedb.system.exception.NotFoundException;
 import org.jakubd.moviedb.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +38,15 @@ public class MovieService {
         return movieRepository.findByWatched(watched).stream()
                 .map(movieMapper::map)
                 .collect(toList());
+    }
+
+    @Transactional
+    public MovieDto update(String id, MovieDto dto) {
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
+        movie.setTitle(dto.getTitle());
+        movie.setDescription(dto.getDescription());
+        movie.setWatched(dto.isWatched());
+        return movieMapper.map(movie);
     }
 }
