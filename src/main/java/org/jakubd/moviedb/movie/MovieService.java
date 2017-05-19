@@ -49,4 +49,9 @@ public class MovieService {
         movie.setWatched(dto.isWatched());
         return movieMapper.map(movie);
     }
+
+    @Transactional
+    public void delete(String id) {
+        movieRepository.delete(id);
+    }
 }
