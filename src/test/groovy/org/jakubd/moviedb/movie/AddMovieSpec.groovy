@@ -4,10 +4,12 @@ import groovy.json.JsonSlurper
 import org.jakubd.moviedb.MockMvcSpec
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithUserDetails
 import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
+@WithUserDetails("user")
 class AddMovieSpec extends MockMvcSpec {
 
     @Autowired

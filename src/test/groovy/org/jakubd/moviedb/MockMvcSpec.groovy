@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*
+
 @Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = [MovieDbApplication])
 class MockMvcSpec extends Specification {
@@ -21,6 +23,7 @@ class MockMvcSpec extends Specification {
     void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
+                .apply(springSecurity())
                 .build()
     }
 

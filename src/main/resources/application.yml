@@ -10,3 +10,7 @@ spring:
 flyway:
   locations: classpath:db/migration, db/init
   out-of-order: true
+
+jwt:
+  signingKey: secret-key
+  expirationInSeconds: 600

@@ -2,9 +2,11 @@ package org.jakubd.moviedb.movie
 
 import groovy.json.JsonSlurper
 import org.jakubd.moviedb.MockMvcSpec
+import org.springframework.security.test.context.support.WithUserDetails
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
+@WithUserDetails("user")
 class WatchedMoviesFilterSpec extends MockMvcSpec {
 
     def 'should filter watched movies'() {

@@ -3,6 +3,7 @@ package org.jakubd.moviedb.movie;
 import lombok.RequiredArgsConstructor;
 import org.jakubd.moviedb.system.exception.NotFoundException;
 import org.jakubd.moviedb.user.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,7 @@ public class MovieService {
     public MovieDto create(MovieDto movieDto) {
         Movie movie = movieMapper.map(movieDto);
         User user = new User();
-        user.setLogin("user");
+        user.setLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         movie.setUser(user);
         movie = movieRepository.save(movie);
         return movieMapper.map(movie);

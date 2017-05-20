@@ -2,9 +2,11 @@ package org.jakubd.moviedb.movie
 
 import org.jakubd.moviedb.MockMvcSpec
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.test.context.support.WithUserDetails
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 
+@WithUserDetails("user")
 class DeleteMovieSpec extends MockMvcSpec {
 
     @Autowired
