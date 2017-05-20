@@ -16,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -24,6 +27,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final JwtParser jwtParser;
+    private static final List<String> PERMITTED_LINKS = Arrays.asList("/api/health", "/api/auth");
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -38,7 +42,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private JwtAuthenticationTokenFilter authenticationTokenFilter() throws Exception {
-        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter(userDetailsService, jwtParser);
+        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter(PERMITTED_LINKS, userDetailsService, jwtParser);
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler((req, res, auth) -> {}); // default success handler redirects
         return filter;
@@ -49,7 +53,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() // not needed in stateless model
                 .authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
+                .antMatchers((String[]) PERMITTED_LINKS.toArray()).permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(new BasicAuthenticationEntryPoint())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

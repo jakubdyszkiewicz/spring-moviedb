@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static java.util.Collections.emptyList;
 
@@ -26,8 +27,8 @@ class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilte
     private final UserDetailsService userDetailsService;
     private final JwtParser jwtParser;
 
-    JwtAuthenticationTokenFilter(UserDetailsService userDetailsService, JwtParser jwtParser) {
-        super(request -> !request.getRequestURI().startsWith(AUTH_ENDPOINT));
+    JwtAuthenticationTokenFilter(List<String> permittedLinks, UserDetailsService userDetailsService, JwtParser jwtParser) {
+        super(request -> !permittedLinks.contains(request.getRequestURI()));
         this.userDetailsService = userDetailsService;
         this.jwtParser = jwtParser;
     }
