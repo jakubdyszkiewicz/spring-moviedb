@@ -27,7 +27,7 @@ class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilte
     private final JwtParser jwtParser;
 
     JwtAuthenticationTokenFilter(List<String> permittedLinks, UserDetailsService userDetailsService, JwtParser jwtParser) {
-        super(request -> !permittedLinks.contains(request.getRequestURI()));
+        super(request -> !permittedLinks.contains(request.getRequestURI()) && request.getRequestURI().startsWith("/api"));
         this.userDetailsService = userDetailsService;
         this.jwtParser = jwtParser;
     }

@@ -40,6 +40,9 @@ Then build the app (with tests)
 Finally, run the app
 ```java -jar build/libs/moviedb-0.0.1-SNAPSHOT.jar```
 
+## API Docs
+API can be reviewed using Swagger at `http://localhost:8080/swagger-ui.html`
+
 ## Notes
 #### What's with the package private?
 The reason is domain separation. The inspiration was [this video](https://www.youtube.com/watch?v=5Q8kiSN6390). Facades are missing and I used `@Component` because I felt that it would be overkill in such context.
