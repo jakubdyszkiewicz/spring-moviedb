@@ -1,1 +1,1 @@
-INSERT INTO USER(LOGIN, PASSWORD) VALUES ('user', 'user')
+INSERT INTO USER(LOGIN, PASSWORD) VALUES ('user', '$2a$10$ychCXKSPJ8ClKLlRJN.O6.1eQ2.eaBKP3mUrWfCcqA.qUIkgcxqRK') -- password: user

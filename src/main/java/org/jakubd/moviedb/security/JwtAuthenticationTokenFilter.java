@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.util.Collections.emptyList;
+
 class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
 
     private static final String AUTHORIZATION_HEADER = "Authorization";
@@ -45,7 +47,7 @@ class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilte
 
         String username = jwtParser.parse(token);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword());
+        return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), emptyList());
     }
 
     /**
