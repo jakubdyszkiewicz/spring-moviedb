@@ -22,7 +22,6 @@ class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilte
 
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String HEADER_VALUE_PREFIX = "Bearer ";
-    private static final String AUTH_ENDPOINT = "/api/auth";
 
     private final UserDetailsService userDetailsService;
     private final JwtParser jwtParser;

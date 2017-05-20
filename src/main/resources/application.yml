@@ -8,7 +8,7 @@ spring:
     password: moviedb
 
 flyway:
-  locations: classpath:db/migration, db/init
+  locations: classpath:db/migration, db/init, db/fk
   out-of-order: true
 
 jwt:

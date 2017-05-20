@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class MovieDto {
+class MovieDto {
 
     private String id;
 

@@ -10,7 +10,7 @@ import java.util.Collection;
 import static java.util.Collections.emptyList;
 
 @RequiredArgsConstructor
-public class AuthenticatedUser implements UserDetails {
+class AuthenticatedUser implements UserDetails {
 
     private final String username;
     private final String password;

@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MovieService {
+class MovieService {
 
     private final MovieRepository movieRepository;
     private final MovieMapper movieMapper;
