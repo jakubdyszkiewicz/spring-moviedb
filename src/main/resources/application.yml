@@ -1,11 +1,11 @@
+server:
+  port: ${PORT:8080}
 spring:
   jpa:
     hibernate:
       ddl-auto: validate
-  datasource:
-    url: jdbc:mysql://localhost:3306/moviedb
-    username: moviedb
-    password: moviedb
+  profiles:
+    active: local
 
 flyway:
   locations: classpath:db/migration, db/init, db/fk

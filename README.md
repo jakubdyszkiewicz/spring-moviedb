@@ -22,6 +22,7 @@ This is recruitment task that includes simple movie API using Spring Boot with J
 * Run the application locally
 * Run automatic tests
 * Use API endpoint(s) (no need to be 100% complete)
+* Deploy on free cloud service (i.e. Heroku)
 
 ## Installation
 Requirements:
@@ -42,6 +43,10 @@ Finally, run the app
 
 ## API Docs
 API can be reviewed using Swagger at `http://localhost:8080/swagger-ui.html`
+or `https://spring-moviedb.herokuapp.com/swagger-ui.html`
+
+## Deployment
+Application was deployed on Heroku at `https://spring-moviedb.herokuapp.com` 
 
 ## Notes
 #### What's with the package private?
